@@ -1,11 +1,9 @@
 
 body {
-margin: 0;
-padding: 0;
-background-image: url("/Users/brianellis/wdi/tic-tac-toe/images/waterfall.jpg");
-
-
-
+  margin: 0;
+  padding: 0;
+  background-image: url("../images/waterfall.jpg");
+  background-size: cover;
 }
 
 #container {
@@ -61,6 +59,7 @@ background-color: rgba(0, 0, 0, 0);
 
 img {
 box-shadow: 5px 5px 6px black;
+border: 2px Solid black;
 }
 
 .imageBlank {

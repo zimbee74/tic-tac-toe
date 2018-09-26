@@ -15,10 +15,15 @@ window.onload = function() {
 
     images[i].addEventListener('click', function( event ){
       let eti = event.target.id;
-      // detectedStrings += eti ;
-      // console.log(detectedStrings);
 
-      this.src = `images/TIC_TAC_TOE_${currentTurn}.png`;
+      // should we accept this click and play the move, or is it an invalid click,
+      // in which case we should ignore it
+      if( !event.target.src.endsWith('BLANK.png') ){
+        // ignore the click by returning early, if the square is NOT blank
+        return;
+      }
+
+       event.target.src = `images/TIC_TAC_TOE_${currentTurn}.png`;
 
       if (currentTurn === 'X') {
         // X just had its turn
@@ -77,3 +82,17 @@ window.onload = function() {
   }; // compareFunction()
 
 };
+
+// TO BE ADDED
+// TO BE ADDED
+//
+// -- Announce Winner --> 4 possible states:
+    // TIC-TIC_TOE dom manipulation
+    // X WINS dom manipulation
+    // O WINS dom manipulation
+    // IT'S A TIE dom manipulation
+
+// -- Prevent additional clicks flipping values DONE
+// -- Stop game after winner found
+// -- Have a reset button
+//               Get Solid understanding of what I have written
