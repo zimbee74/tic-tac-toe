@@ -15,6 +15,8 @@ window.onload = function() {
     console.log(images[i]);
     images[i].addEventListener('click', function( event ){
       if (playGame) { // nested if statements with local variable
+        // tells program if play game true run code till LINE 45
+        // program then runs till LINE 58 for winner check
         let eti = event.target.id;
         // should we accept this click and play the move, or is it an invalid click,
         // in which case we should ignore it
@@ -44,30 +46,30 @@ window.onload = function() {
   } // for loop
   const pickWinnerFunction = function( moveHistory ) { // has parameter move history
     const winningStrings = ['abc', 'def', 'ghi', 'adg', 'beh', 'cfi', 'aei', 'ceg'];
-
-    for (let i = 0; i < winningStrings.length; i++) { // keeps count
-      const letters = winningStrings[i].split('');
-      const first = letters[0];
-      const second = letters[1];
-      const third = letters[2];
-      let possibleWinner = moveHistory.includes(first)  &&
-                    moveHistory.includes(second) &&
-                    moveHistory.includes(third);
+    // above is hard coded winning string combinations
+    for (let i = 0; i < winningStrings.length; i++) { //for loop keeps count
+      const letters = winningStrings[i].split(''); //captures enetered items in array
+      const first = letters[0];  // compares first letter
+      const second = letters[1]; // compares second letter
+      const third = letters[2]; // compares third letter
+      let possibleWinner =  moveHistory.includes(first)  &&
+                            moveHistory.includes(second) &&
+                            moveHistory.includes(third);
       if( possibleWinner ){
         document.getElementsByTagName("h1")[0].innerHTML = `${currentTurn} HAZ WON`;
-        playGame = false;
+        playGame = false; // stops game by disabling listner on blank squares
       } // runs logic that announces winner and stops clicking of squares
     }   // splits winning strings into an array
   };    // pickWinnerFunction
         // - runs check against the 9 possible hard coded combinations
+        // if check is false executes the below code
 
-const h2 = document.querySelector('h2');
-h2.addEventListener('click', function( event ){
-  console.log('clicked reset!');
-
-  xMoves = "";
-  oMoves = "";
-  playGame = true;
+const h2 = document.querySelector('h2'); // select H2 tag
+h2.addEventListener('click', function( event ){ // add event lister for click
+  xMoves = ""; // empties
+  oMoves = ""; // empties
+  playGame = true; // resets ability to play game to true - enables new game
+  currentTurn = 'X'; // ensures X always starts remove to alternate
   document.getElementsByTagName("h1")[0].innerHTML = `TIC-TAC-TOE`;
 
   for (let i = 0; i < images.length; i++ ) {
