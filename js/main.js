@@ -57,7 +57,7 @@ window.onload = function() {
     // checkForWin();
     // ______________________________________________________________________
 
-    const winningStrings = ['abc', 'def', 'ghi', 'adg', 'beh', 'cfi', 'aei', 'ced'];
+    const winningStrings = ['abc', 'def', 'ghi', 'adg', 'beh', 'cfi', 'aei', 'ceg'];
 
     for (let i = 0; i < winningStrings.length; i++) {
       const letters = winningStrings[i].split('');
@@ -74,25 +74,17 @@ window.onload = function() {
         moveHistory.includes(second) &&
         moveHistory.includes(third)
       ){
-        console.log('WINNER!',  winningStrings[i]);
+              document.getElementsByTagName("h1")[0].innerHTML = `${currentTurn} HAZ WON`;
+              console.log('WINNER!',  winningStrings[i]);
+
+              //console.log((xMoves + oMoves).length);
       }
+      // else if (xMoves.length + oMoves.length >= 9 && winningStrings[i] === false) {
+      //         document.getElementsByTagName("h1")[0].innerHTML = `IT'S A TIE`;
+      // }
 
-    } // for
+    }
 
-  }; // compareFunction()
+  };
 
 };
-
-// TO BE ADDED
-// TO BE ADDED
-//
-// -- Announce Winner --> 4 possible states:
-    // TIC-TIC_TOE dom manipulation
-    // X WINS dom manipulation
-    // O WINS dom manipulation
-    // IT'S A TIE dom manipulation
-
-// -- Prevent additional clicks flipping values DONE
-// -- Stop game after winner found
-// -- Have a reset button
-//               Get Solid understanding of what I have written

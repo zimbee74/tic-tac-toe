@@ -36,10 +36,24 @@ h1 {
   font-family: 'Righteous', cursive;
   padding-top: 20px;
   padding-bottom: 20px;
-  font-size: 80px;
+  font-size: 75px;
   margin-left: -6%;
   text-shadow: 5px 5px 6px black;
 }
+
+h2 {
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Righteous', cursive;
+  padding-top: 0px;
+  margin-top: -20px;
+  padding-bottom: 20px;
+  font-size: 75px;
+  margin-left: -6%;
+  text-shadow: 5px 5px 6px black;
+}
+
 
 .column {
 width: 32%;
