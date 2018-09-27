@@ -3,13 +3,15 @@ console.log('hello world');
 // FOR LOOP STUFF NEEDS TO BE MOVED
 let currentTurn = 'X';
 // get every image element with the class of imageBlank
-let images = document.getElementsByClassName('imageSwitcher');
+let images = [];
 let xMoves = "";
 let oMoves = "";
-let hasBeenWonSoStop ="";
+// let hasBeenWonSoStop ="";
 let playGame = true;
 
 window.onload = function() {
+
+  images = document.getElementsByClassName('imageSwitcher');
 
   // this for loop attaches the same click handler to every game square (with the .imageSwitcher class)
   for (let i = 0; i < images.length; i++ ) {
@@ -112,21 +114,33 @@ window.onload = function() {
 // i.e. set the squares to BLANK
 
 
+const h2 = document.querySelector('h2');
+h2.addEventListener('click', function( event ){
+  console.log('clicked reset!');
 
-// h2.addEventListener('click', function( event ){
-//   if (playGame) {
-//     let eti = event.target.id;
-//
-//             // should we accept this click and play the move, or is it an invalid click,
-//             // in which case we should ignore it
-//     if( !event.target.src.!endsWith('BLANK.png') ){
-//             // ignore the click by returning early, if the square is NOT blank
-//             //return;
-//     }
-//
-//      event.target.src = `images/TIC_TAC_TOE_BLANK.png`;
-//   }
-// }
+  xMoves = "";
+  oMoves = "";
+  playGame = true;
+  document.getElementsByTagName("h1")[0].innerHTML = `TIC-TAC-TOE`;
+
+  for (let i = 0; i < images.length; i++ ) {
+    console.log(images[i].src);
+    images[i].src = 'images/TIC_TAC_TOE_BLANK.png';
+  }
+  //
+  // if (playGame) {
+  //   let reset = event.target.h2;
+  //
+  //           // should we accept this click and play the move, or is it an invalid click,
+  //           // in which case we should ignore it
+  //   // if( !event.target.src.endsWith('BLANK.png') ){
+  //   //         // ignore the click by returning early, if the square is NOT blank
+  //   //         //return;
+  //   // }
+  //
+  //    event.target.src = `images/TIC_TAC_TOE_BLANK.png`;
+  // }
+});
 
 
 
