@@ -6,6 +6,8 @@ let currentTurn = 'X';
 let images = document.getElementsByClassName('imageSwitcher');
 let xMoves = "";
 let oMoves = "";
+let hasBeenWonSoStop ="";
+let playGame = true;
 
 window.onload = function() {
 
@@ -13,38 +15,44 @@ window.onload = function() {
   for (let i = 0; i < images.length; i++ ) {
     console.log(images[i]);
 
+
+//_____________________________________________________________________________
     images[i].addEventListener('click', function( event ){
-      let eti = event.target.id;
+      if (playGame) {
+        let eti = event.target.id;
 
-      // should we accept this click and play the move, or is it an invalid click,
-      // in which case we should ignore it
-      if( !event.target.src.endsWith('BLANK.png') ){
-        // ignore the click by returning early, if the square is NOT blank
-        return;
+        // should we accept this click and play the move, or is it an invalid click,
+        // in which case we should ignore it
+        if( !event.target.src.endsWith('BLANK.png') ){
+          // ignore the click by returning early, if the square is NOT blank
+          return;
+        }
+
+         event.target.src = `images/TIC_TAC_TOE_${currentTurn}.png`;
+
+
+        if (currentTurn === 'X') {
+          // X just had its turn
+          xMoves += eti;
+          pickWinnerFunction( xMoves );
+          currentTurn = 'O';
+        } else {
+          // O just had its turn
+          oMoves += eti;
+          pickWinnerFunction( oMoves );
+          currentTurn = 'X';
+        }
       }
-
-       event.target.src = `images/TIC_TAC_TOE_${currentTurn}.png`;
-
-      if (currentTurn === 'X') {
-        // X just had its turn
-        xMoves += eti;
-        compareFunction( xMoves );
-        currentTurn = 'O';
-      } else {
-        // O just had its turn
-        oMoves += eti;
-        compareFunction( oMoves );
-        currentTurn = 'X';
-      }
-
+//
 
     }); // end of click handler function
-
+    // }
+//___________________________________________________________________________
   } // for
 
   // FUNCTION NEEDS TO GO TO START DUPLICATE ABOVE and BELOW
   // FUNCTION NEEDS TO GO TO START
-  const compareFunction = function( moveHistory ) {
+  const pickWinnerFunction = function( moveHistory ) {
 
     // if (currentTurn) {
     //   this.src = "images/TIC_TAC_TOE_X.png";
@@ -69,22 +77,57 @@ window.onload = function() {
       // console.log(letters[1]);
       // console.log(letters[2]);
       // const compare = enteredStrings.includes(winningStrings[i]);
+      let possibleWinner = moveHistory.includes(first)  &&
+                    moveHistory.includes(second) &&
+                    moveHistory.includes(third);
 
-      if( moveHistory.includes(first)  &&
-        moveHistory.includes(second) &&
-        moveHistory.includes(third)
-      ){
-              document.getElementsByTagName("h1")[0].innerHTML = `${currentTurn} HAZ WON`;
-              console.log('WINNER!',  winningStrings[i]);
 
-              //console.log((xMoves + oMoves).length);
+      if( possibleWinner ){
+        document.getElementsByTagName("h1")[0].innerHTML = `${currentTurn} HAZ WON`;
+        playGame = false;
+        // console.log('WINNER!',  winningStrings[i]);
+        // document.getElementsByClassName("row").style.pointerEvents='none';
+        // document.getElementsByClassName("row").removeEventListener("mousemove", window);
+
+        //console.log((xMoves + oMoves).length);
+        // document.getElementById(id).style.property = new style
       }
-      // else if (xMoves.length + oMoves.length >= 9 && winningStrings[i] === false) {
-      //         document.getElementsByTagName("h1")[0].innerHTML = `IT'S A TIE`;
-      // }
 
     }
 
-  };
+  }; // pickWinnerFunction
 
-};
+
+
+// const identifyDrawFunction = function() {
+  //  {
+  // if (true) {
+  //   else if (xMoves.length + oMoves.length >= 9 && winningStrings[i] === false)
+  // }
+
+         // document.getElementsByTagName("h1")[0].innerHTML = `IT'S A TIE`;
+  // }
+
+// this is where you put the on click reset the program
+// i.e. set the squares to BLANK
+
+
+
+// h2.addEventListener('click', function( event ){
+//   if (playGame) {
+//     let eti = event.target.id;
+//
+//             // should we accept this click and play the move, or is it an invalid click,
+//             // in which case we should ignore it
+//     if( !event.target.src.!endsWith('BLANK.png') ){
+//             // ignore the click by returning early, if the square is NOT blank
+//             //return;
+//     }
+//
+//      event.target.src = `images/TIC_TAC_TOE_BLANK.png`;
+//   }
+// }
+
+
+
+}; // Window on load function
