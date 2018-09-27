@@ -49,16 +49,22 @@ window.onload = function() {
     // above is hard coded winning string combinations
     for (let i = 0; i < winningStrings.length; i++) { //for loop keeps count
       const letters = winningStrings[i].split(''); //captures enetered items in array
-      const first = letters[0];  // compares first letter
-      const second = letters[1]; // compares second letter
-      const third = letters[2]; // compares third letter
-      let possibleWinner =  moveHistory.includes(first)  &&
-                            moveHistory.includes(second) &&
-                            moveHistory.includes(third);
+      const first = letters[0];  // creates variable for easy handling
+      const second = letters[1]; // creates variable for easy handling
+      const third = letters[2]; //  creates variable for easy handling
+      let possibleWinner =  moveHistory.includes(first)  && // check
+                            moveHistory.includes(second) && // check
+                            moveHistory.includes(third); // check
       if( possibleWinner ){
         document.getElementsByTagName("h1")[0].innerHTML = `${currentTurn} HAZ WON`;
         playGame = false; // stops game by disabling listner on blank squares
-      } // runs logic that announces winner and stops clicking of squares
+      } else if( xMoves.length + oMoves.length === 9 ){
+        // possibleWinner is false
+        document.getElementsByTagName("h1")[0].innerHTML = `IZ A TIE`;
+        playGame = false;
+      }
+
+      // runs logic that announces winner and stops clicking of squares
     }   // splits winning strings into an array
   };    // pickWinnerFunction
         // - runs check against the 9 possible hard coded combinations
